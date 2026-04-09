@@ -1,0 +1,76 @@
+name: Sync and build upstream release
+
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-and-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get latest upstream release
+        id: upstream
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG=$(gh api repos/jcrist/msgspec/releases/latest --jq '.tag_name')
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Upstream latest: $TAG"
+
+      - name: Check if already built
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.upstream.outputs.tag }}"
+          RISCV_TAG="riscv64-v${TAG}"
+          if gh api "repos/gounthar/msgspec/releases/tags/${RISCV_TAG}" >/dev/null 2>&1; then
+            echo "already_built=true" >> "$GITHUB_OUTPUT"
+            echo "Release ${RISCV_TAG} already exists, nothing to do."
+          else
+            echo "already_built=false" >> "$GITHUB_OUTPUT"
+            echo "No release for ${RISCV_TAG} yet, will build."
+          fi
+
+      - name: Sync fork main branch
+        if: steps.check.outputs.already_built == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api --method POST repos/gounthar/msgspec/merge-upstream -f branch=main
+          echo "Fork main synced."
+
+      - name: Sync tag from upstream
+        if: steps.check.outputs.already_built == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.upstream.outputs.tag }}"
+          # Resolve annotated tags to their commit SHA
+          OBJ=$(gh api "repos/jcrist/msgspec/git/refs/tags/${TAG}" --jq '.object | {sha,type}')
+          TYPE=$(echo "$OBJ" | jq -r '.type')
+          SHA=$(echo "$OBJ" | jq -r '.sha')
+          if [ "$TYPE" = "tag" ]; then
+            SHA=$(gh api "repos/jcrist/msgspec/git/tags/${SHA}" --jq '.object.sha')
+          fi
+          if gh api "repos/gounthar/msgspec/git/refs/tags/${TAG}" >/dev/null 2>&1; then
+            echo "Tag ${TAG} already in fork."
+          else
+            gh api --method POST repos/gounthar/msgspec/git/refs \
+              -f "ref=refs/tags/${TAG}" \
+              -f "sha=${SHA}"
+            echo "Created tag ${TAG} -> ${SHA}"
+          fi
+
+      - name: Trigger build
+        if: steps.check.outputs.already_built == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.upstream.outputs.tag }}"
+          gh api --method POST \
+            repos/gounthar/msgspec/actions/workflows/build-riscv64.yml/dispatches \
+            -f ref=main \
+            -f "inputs[release_tag]=${TAG}"
+          echo "Triggered build-riscv64.yml for ${TAG}."
