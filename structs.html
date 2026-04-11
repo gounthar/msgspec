@@ -7,10 +7,10 @@
         <link rel="prefetch" href="_static/msgspec-logo-light.svg" as="image">
         <link rel="prefetch" href="_static/msgspec-logo-dark.svg" as="image">
 
-    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
         <title>Structs</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -305,7 +305,7 @@
 <p>Structs are the preferred way of defining structured data types in <code class="docutils literal notranslate"><span class="pre">msgspec</span></code>.
 They’re written in C and are quite speedy and lightweight (<a class="reference internal" href="benchmarks.html"><span class="doc">measurably
 faster</span></a> to create/compare/encode/decode than similar options like
-<a class="reference external" href="https://docs.python.org/3/library/dataclasses.html">dataclasses</a>, <a class="reference external" href="https://www.attrs.org/en/stable/index.html">attrs</a>, or <a class="reference external" href="https://docs.pydantic.dev/latest/">pydantic</a>). They’re great for representing structured
+<a class="reference external" href="https://docs.python.org/3/library/dataclasses.html">dataclasses</a>, <a class="reference external" href="https://www.attrs.org/en/stable/index.html">attrs</a>, or <a class="reference external" href="https://pydantic.dev/docs/validation/latest/get-started/">pydantic</a>). They’re great for representing structured
 data both for serialization and for use in an application.</p>
 <p>Structs are defined by subclassing from <a class="reference internal" href="api.html#msgspec.Struct" title="msgspec.Struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">msgspec.Struct</span></code></a> and annotating the
 types of individual fields. Default values can also be provided for any
@@ -578,7 +578,7 @@ detected.</p>
 </section>
 <section id="type-validation">
 <h2>Type Validation<a class="headerlink" href="#type-validation" title="Link to this heading">¶</a></h2>
-<p>Unlike some other libraries (e.g. <a class="reference external" href="https://docs.pydantic.dev/latest/">pydantic</a>), the type annotations on a
+<p>Unlike some other libraries (e.g. <a class="reference external" href="https://pydantic.dev/docs/validation/latest/get-started/">pydantic</a>), the type annotations on a
 <a class="reference internal" href="api.html#msgspec.Struct" title="msgspec.Struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">msgspec.Struct</span></code></a> class are not checked at runtime during normal use. Types are
 only checked when <em>decoding</em> a serialized message when using a <code class="xref py py-obj docutils literal notranslate"><span class="pre">typed</span> <span class="pre">decoder</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">msgspec</span>
@@ -1353,8 +1353,8 @@ collected (leading to a memory leak).</p>
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=de5a9c30"></script>

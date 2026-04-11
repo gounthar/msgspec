@@ -7,10 +7,10 @@
         <link rel="prefetch" href="_static/msgspec-logo-light.svg" as="image">
         <link rel="prefetch" href="_static/msgspec-logo-dark.svg" as="image">
 
-    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
         <title>Benchmarks</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -361,7 +361,7 @@ into user-friendly python objects.</p></li>
 <ul class="simple">
 <li><p><a class="reference external" href="https://jcristharif.com/msgspec/">msgspec</a> (0.18.5)</p></li>
 <li><p><a class="reference external" href="https://github.com/Fatal1ty/mashumaro">mashumaro</a> (3.11)</p></li>
-<li><p><a class="reference external" href="https://docs.pydantic.dev/latest/">pydantic</a> (both 1.10.13 and 2.5.2)</p></li>
+<li><p><a class="reference external" href="https://pydantic.dev/docs/validation/latest/get-started/">pydantic</a> (both 1.10.13 and 2.5.2)</p></li>
 <li><p><a class="reference external" href="https://catt.rs/en/latest/">cattrs</a> (23.2.3)</p></li>
 </ul>
 <p>Each benchmark creates a message containing one or more <code class="docutils literal notranslate"><span class="pre">File</span></code>/<code class="docutils literal notranslate"><span class="pre">Directory</span></code>
@@ -373,13 +373,13 @@ than <code class="docutils literal notranslate"><span class="pre">cattrs</span><
 <code class="docutils literal notranslate"><span class="pre">pydantic</span></code> V1.</p>
 <p>This plot shows the performance benefit of performing type validation during
 message decoding (as done by <code class="docutils literal notranslate"><span class="pre">msgspec</span></code>) rather than as a secondary step with
-a third-party library like <a class="reference external" href="https://catt.rs/en/latest/">cattrs</a> or <a class="reference external" href="https://docs.pydantic.dev/latest/">pydantic</a> V1. Validating after decoding
+a third-party library like <a class="reference external" href="https://catt.rs/en/latest/">cattrs</a> or <a class="reference external" href="https://pydantic.dev/docs/validation/latest/get-started/">pydantic</a> V1. Validating after decoding
 is slower for two reasons:</p>
 <ul class="simple">
 <li><p>It requires traversing over the entire output structure a second time (which
 can be slow due to pointer chasing)</p></li>
 <li><p>It may require converting some python objects to their desired output types
-(e.g. converting a decoded <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> to a <a class="reference external" href="https://docs.pydantic.dev/latest/">pydantic</a> model), resulting in
+(e.g. converting a decoded <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> to a <a class="reference external" href="https://pydantic.dev/docs/validation/latest/get-started/">pydantic</a> model), resulting in
 allocating many temporary python objects.</p></li>
 </ul>
 <p>In contrast, libraries like <code class="docutils literal notranslate"><span class="pre">msgspec</span></code> that validate during decoding have none
@@ -423,7 +423,7 @@ against several other popular Python MessagePack libraries.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://jcristharif.com/msgspec/">msgspec</a> (0.18.5)</p></li>
 <li><p><a class="reference external" href="https://github.com/msgpack/msgpack-python">msgpack</a> (1.0.7)</p></li>
-<li><p><a class="reference external" href="https://github.com/aviramha/ormsgpack">ormsgpack</a> (1.4.1)</p></li>
+<li><p><a class="reference external" href="https://github.com/ormsgpack/ormsgpack">ormsgpack</a> (1.4.1)</p></li>
 </ul>
 <div id="bench-msgpack" style="width:75%"></div><p>As with the JSON benchmark above, <code class="docutils literal notranslate"><span class="pre">msgspec</span></code> with a schema provided (<code class="docutils literal notranslate"><span class="pre">msgspec</span>
 <span class="pre">structs</span></code>) is faster than <code class="docutils literal notranslate"><span class="pre">msgspec</span></code> with no schema. In both cases though
@@ -531,7 +531,7 @@ performance against other similar libraries. The cases compared are:</p>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/dataclasses.html">dataclasses</a></p></li>
 <li><p><a class="reference external" href="https://jcristharif.com/msgspec/">msgspec</a> (0.18.5)</p></li>
 <li><p><a class="reference external" href="https://www.attrs.org/en/stable/">attrs</a> (23.1.0)</p></li>
-<li><p><a class="reference external" href="https://docs.pydantic.dev/latest/">pydantic</a> (2.5.2)</p></li>
+<li><p><a class="reference external" href="https://pydantic.dev/docs/validation/latest/get-started/">pydantic</a> (2.5.2)</p></li>
 </ul>
 <p>For each library, the following operations are benchmarked:</p>
 <ul class="simple">
@@ -938,8 +938,8 @@ buildPlot('#bench-msgpack', results_msgpack, "Benchmark - MessagePack Serializat
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=de5a9c30"></script>

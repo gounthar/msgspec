@@ -7,10 +7,10 @@
         <link rel="prefetch" href="_static/msgspec-logo-light.svg" as="image">
         <link rel="prefetch" href="_static/msgspec-logo-dark.svg" as="image">
 
-    <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
         <title>Supported Types</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -718,7 +718,7 @@ needed.</p></li>
 <ul class="simple">
 <li><p>Java’s <code class="docutils literal notranslate"><span class="pre">time.Duration.parse</span></code> (<a class="reference external" href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html#parse(java.lang.CharSequence)">docs</a>)</p></li>
 <li><p>Javascript’s proposed <code class="docutils literal notranslate"><span class="pre">Temporal.Duration</span></code> standard API (<a class="reference external" href="https://tc39.es/proposal-temporal/docs/duration.html">docs</a>)</p></li>
-<li><p>Python libraries like <a class="reference external" href="https://pendulum.eustace.io/">pendulum</a> or <a class="reference external" href="https://docs.pydantic.dev/latest/">pydantic</a>.</p></li>
+<li><p>Python libraries like <a class="reference external" href="https://pendulum.eustace.io/">pendulum</a> or <a class="reference external" href="https://pydantic.dev/docs/validation/latest/get-started/">pydantic</a>.</p></li>
 </ul>
 <p>Duration strings produced by msgspec should be interchangeable with these
 libraries, as well as similar ones in other language ecosystems.</p>
@@ -1051,7 +1051,7 @@ additional features.</p>
 </pre></div>
 </div>
 <p>Other types that duck-type as <code class="docutils literal notranslate"><span class="pre">dataclasses</span></code> are also supported, such as
-<a class="reference external" href="https://docs.pydantic.dev/latest/usage/dataclasses/">pydantic dataclasses</a>.</p>
+<a class="reference external" href="https://pydantic.dev/docs/validation/latest/concepts/dataclasses/">pydantic dataclasses</a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic.dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
@@ -1114,7 +1114,7 @@ additional features.</p>
 <section id="struct">
 <h2><code class="docutils literal notranslate"><span class="pre">Struct</span></code><a class="headerlink" href="#struct" title="Link to this heading">¶</a></h2>
 <p>Structs are the preferred way of defining structured data types in <code class="docutils literal notranslate"><span class="pre">msgspec</span></code>.
-You can think of them as similar to <a class="reference external" href="https://docs.python.org/3/library/dataclasses.html">dataclasses</a>/<a class="reference external" href="https://www.attrs.org/en/stable/index.html">attrs</a>/<a class="reference external" href="https://docs.pydantic.dev/latest/">pydantic</a>, but much
+You can think of them as similar to <a class="reference external" href="https://docs.python.org/3/library/dataclasses.html">dataclasses</a>/<a class="reference external" href="https://www.attrs.org/en/stable/index.html">attrs</a>/<a class="reference external" href="https://pydantic.dev/docs/validation/latest/get-started/">pydantic</a>, but much
 faster to create/compare/encode/decode. For more information, see the
 <a class="reference internal" href="structs.html"><span class="doc">Structs</span></a> page.</p>
 <p>By default <a class="reference internal" href="api.html#msgspec.Struct" title="msgspec.Struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">msgspec.Struct</span></code></a> types map to objects/maps in all protocols. During
@@ -1394,7 +1394,7 @@ based on any of the following types:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="api.html#msgspec.Struct" title="msgspec.Struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">msgspec.Struct</span></code></a></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/dataclasses.html#module-dataclasses" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dataclasses</span></code></a></p></li>
-<li><p><a class="reference external" href="https://www.attrs.org/en/stable/api.html#module-attrs" title="(in attrs v25.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attrs</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.attrs.org/en/stable/api.html#module-attrs" title="(in attrs v26.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attrs</span></code></a></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypedDict" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">typing.TypedDict</span></code></a></p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.NamedTuple" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">typing.NamedTuple</span></code></a></p></li>
 </ul>
@@ -1829,8 +1829,8 @@ by default.</p>
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/furo.js?v=46bd48cc"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=de5a9c30"></script>
