@@ -5658,7 +5658,7 @@ structmeta_get_module_ns(MsgspecState *mod, StructMetaInfo *info) {
     PyObject *modules = PySys_GetObject("modules");
     if (modules == NULL) return NULL;
     PyObject *module = PyDict_GetItem(modules, name);
-    if (mod == NULL) return NULL;
+    if (module == NULL) return NULL;
     return PyObject_GetAttr(module, mod->str___dict__);
 }
 
@@ -10140,6 +10140,7 @@ ms_passes_big_int_constraints(PyObject *obj, TypeNode *type, PathNode *path) {
         Py_DECREF(base);
         if (remainder == NULL) return false;
         long iremainder = PyLong_AsLong(remainder);
+        Py_DECREF(remainder);
         if (iremainder != 0) {
             _err_int_constraint(
                 "Expected `int` that's a multiple of %lld%U", c, path
